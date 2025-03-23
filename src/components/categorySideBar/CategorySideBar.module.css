@@ -1,0 +1,44 @@
+.SideBar {
+  position: absolute;
+  display: flex;
+  top: 100%;
+  gap: 1rem;
+  left: 0;
+  flex-direction: column;
+  clip-path: inset(0 0 100% 0);
+  opacity: 0;
+  transition: clip-path 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  background-color: var(--elements-bg-color);
+  padding: 1rem 2rem 2rem 2rem;
+  border-bottom-right-radius: 1rem;
+  align-items: center;
+}
+
+.SideBar.Open {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+}
+
+.Links {
+  width: fit-content;
+  color: var(--text-color);
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.Links::after {
+  content: '';
+  background-color: var(--text-color);
+  height: 2px;
+  bottom: -2px;
+  transform: scaleX(0);
+  left: 0;
+  width: 100%;
+  position: absolute;
+  transition: transform 0.3s;
+}
+
+.Links:hover::after {
+  transform: scaleX(100%);
+}

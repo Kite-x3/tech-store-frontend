@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+  font-family: 'Noto Sans Display', sans-serif;
+  font-weight: 500;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  min-width: 100vw;
+
+  --bg-color: #424242;
+  --second-background-color: #232323;
+  --elements-bg-color: rgb(57, 57, 57);
+  --text-color: rgb(255, 255, 255);
+  --hover-color: #979797;
+  --second-hover-color: #979797;
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font-family: 'Noto Sans Display', sans-serif;
+}
+
+.Content {
+  flex-grow: 1;
+}
+
+.App {
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+body {
+  min-height: 100vh;
+  min-width: 100vw;
+  margin: 0;
+  overflow-x: hidden;
+}

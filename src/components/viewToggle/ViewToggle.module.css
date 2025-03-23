@@ -1,0 +1,40 @@
+.ViewButtons {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 0;
+  width: 60vw;
+}
+
+.ViewButtons button {
+  align-items: center;
+  margin: 1rem 0rem 0rem 0rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.6rem;
+  padding: 0.2rem;
+}
+
+.ViewButtons button svg {
+  height: 1.2rem;
+}
+
+.LeftButton {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.RightButton {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.ViewButtons button.Selected {
+  background-color: var(--second-hover-color);
+  color: var(--elements-bg-color);
+}

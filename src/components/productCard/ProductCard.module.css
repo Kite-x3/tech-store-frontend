@@ -1,0 +1,68 @@
+.Product {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  gap: 1rem;
+  background-color: var(--elements-bg-color);
+}
+
+.ProductLink {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.Info {
+  display: flex;
+  gap: 1rem;
+}
+
+.Buying {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Buying button {
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--elements-bg-color);
+  background-color: var(--text-color);
+  transition: all 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.Buying button:hover {
+  box-shadow: 0 0 10px var(--second-hover-color);
+}
+
+.Product img {
+  max-width: 6vw;
+  min-width: 1vw;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+}
+
+.description h2 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+.description strong {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+.description p {
+  margin: 0;
+}

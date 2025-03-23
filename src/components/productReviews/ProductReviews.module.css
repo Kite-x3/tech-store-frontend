@@ -1,0 +1,12 @@
+.ProductReviews {
+  background-color: var(--elements-bg-color);
+  border-radius: 1rem;
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.ProductReviews h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}

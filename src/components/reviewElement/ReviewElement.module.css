@@ -1,0 +1,21 @@
+.Review {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  border: 1px solid var(--text-color);
+  padding: 1rem;
+}
+
+.DateAndRatingBlock {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.Review h4 {
+  margin-bottom: 0.3rem;
+}
+
+.Star {
+  color: rgb(242, 217, 29);
+}

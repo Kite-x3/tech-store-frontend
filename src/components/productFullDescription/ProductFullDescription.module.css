@@ -1,0 +1,42 @@
+.ProductFullDescription {
+  background-color: var(--elements-bg-color);
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.SpecificationList {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.Specification {
+  display: grid;
+  grid-template-columns: 0.8fr 1fr;
+  border-radius: 1rem;
+  border: 1px solid var(--text-color);
+  padding: 0.5rem;
+}
+.SpecificationTitle {
+  position: relative;
+  z-index: 1;
+}
+
+.SpecificationTitle::after {
+  content: ' ';
+  z-index: -1;
+  position: absolute;
+  border-bottom: 1px solid var(--bg-color);
+  width: 100%;
+  top: 1rem;
+  left: 0;
+}
+
+.ProductFullDescription h3 {
+  font-size: 1.3rem;
+}

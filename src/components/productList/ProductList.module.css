@@ -1,0 +1,16 @@
+.ProductList {
+  width: 70vw;
+  margin: 1.2rem 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.list {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
