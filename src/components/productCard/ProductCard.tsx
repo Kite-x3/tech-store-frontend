@@ -14,7 +14,7 @@ export const ProductCard = ({
     <div className={classes.Product}>
       <NavLink to={`/product/${id}`} className={classes.ProductLink}>
         <div className={classes.Info}>
-          <img src={img[0]} />
+          <img src={img?.[0]} />
           <div className={classes.description}>
             <h2>{productName}</h2>
             <p>{description}</p>
