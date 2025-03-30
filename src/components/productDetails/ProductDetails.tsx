@@ -7,7 +7,7 @@ import { ProductReviews } from '../productReviews/ProductReviews'
 export const ProductDetails = (product: Product) => {
   return (
     <div className={classes.ProductDetails}>
-      <ProductOverview {...product}></ProductOverview>
+      <ProductOverview></ProductOverview>
       <ProductFullDescription product={product}></ProductFullDescription>
       <ProductReviews reviews={product.reviews ?? []} />
     </div>

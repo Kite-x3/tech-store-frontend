@@ -20,9 +20,12 @@ class APIService {
   }
 
   async createProduct(product: Omit<Product, 'id'>): Promise<Product> {
+    console.log('Отправляемый JSON:', JSON.stringify(product, null, 2))
     const response = await fetch(`${this.baseURL}/Products`, {
       method: 'POST',
-      headers: { 'Content-Type': 'aplication/json' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(product),
     })
     if (!response.ok) throw new Error('Failed to create project')
@@ -35,12 +38,12 @@ class APIService {
   ): Promise<Product> {
     const productWithId = { ...product, id }
 
-    const response = fetch(`${this.baseURL}/Products/${id}`, {
+    const response = await fetch(`${this.baseURL}/Products/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(productWithId),
     })
-
+    if (!response.ok) throw new Error('Failed to update project')
     return (await response).json()
   }
 
@@ -51,3 +54,5 @@ class APIService {
     if (!response.ok) throw new Error('Failed to delete project')
   }
 }
+
+export default new APIService('/api')

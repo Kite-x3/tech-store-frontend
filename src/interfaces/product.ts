@@ -7,7 +7,8 @@ export interface Product {
   productName: string
   description: string
   img: string[]
-  fullDescription?: string
-  specifications?: ProductSpecification[]
-  reviews?: Review[]
+  //  fullDescription?: string
+  //  specifications?: ProductSpecification[]
+  //  reviews?: Review[]
+  categoryId: number
 }
