@@ -9,18 +9,17 @@ class APIService {
 
   async getProducts(): Promise<Product[]> {
     const response = await fetch(`${this.baseURL}/Products`)
-    if (!response.ok) throw new Error('Failed to fetch projects')
+    if (!response.ok) throw new Error('Failed to fetch products')
     return await response.json()
   }
 
   async getProductById(id: number): Promise<Product> {
     const response = await fetch(`${this.baseURL}/Products/${id}`)
-    if (!response.ok) throw new Error('Failed to fetch projects')
+    if (!response.ok) throw new Error('Failed to fetch products')
     return await response.json()
   }
 
   async createProduct(product: Omit<Product, 'id'>): Promise<Product> {
-    console.log('Отправляемый JSON:', JSON.stringify(product, null, 2))
     const response = await fetch(`${this.baseURL}/Products`, {
       method: 'POST',
       headers: {
@@ -28,7 +27,7 @@ class APIService {
       },
       body: JSON.stringify(product),
     })
-    if (!response.ok) throw new Error('Failed to create project')
+    if (!response.ok) throw new Error('Failed to create product')
     return await response.json()
   }
 
@@ -43,7 +42,7 @@ class APIService {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(productWithId),
     })
-    if (!response.ok) throw new Error('Failed to update project')
+    if (!response.ok) throw new Error('Failed to update product')
     return (await response).json()
   }
 
@@ -51,7 +50,7 @@ class APIService {
     const response = await fetch(`${this.baseURL}/Products/${id}`, {
       method: 'DELETE',
     })
-    if (!response.ok) throw new Error('Failed to delete project')
+    if (!response.ok) throw new Error('Failed to delete product')
   }
 }
 
