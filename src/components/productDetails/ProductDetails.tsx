@@ -9,7 +9,7 @@ export const ProductDetails = (product: Product) => {
     <div className={classes.ProductDetails}>
       <ProductOverview></ProductOverview>
       <ProductFullDescription product={product}></ProductFullDescription>
-      <ProductReviews reviews={product.reviews ?? []} />
+      {/*       <ProductReviews reviews={product.reviews ?? []} /> */}
     </div>
   )
 }

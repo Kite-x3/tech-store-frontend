@@ -10,7 +10,16 @@ export const ProductList = ({ className = 'grid' }: { className?: string }) => {
 
   if (!context) return <div>No context available</div>
 
-  const { products } = context
+  const { products, deleteProduct } = context
+
+  const handleDelete = (id: number) => {
+    const isConfirmed: boolean = window.confirm(
+      'Are you sure you want to delete this product?'
+    )
+    if (isConfirmed) {
+      deleteProduct(id)
+    }
+  }
 
   return (
     <>
@@ -18,9 +27,10 @@ export const ProductList = ({ className = 'grid' }: { className?: string }) => {
       <section className={`${classes.ProductList} ${classes[className]}`}>
         {products.map((p, i) => {
           return (
-            <>
+            <div>
+              <button onClick={() => handleDelete(p.id)}>Delete</button>
               <ProductCard {...p} key={i}></ProductCard>
-            </>
+            </div>
           )
         })}
       </section>
