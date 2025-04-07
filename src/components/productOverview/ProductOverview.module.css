@@ -7,10 +7,6 @@
   box-sizing: border-box;
 }
 
-.ImagesContainer {
-  display: flex;
-}
-
 .ImagesAndDescription {
   display: flex;
   flex-direction: row;
@@ -29,76 +25,6 @@
 h2 {
   margin: 0 0 1rem 1rem;
   font-size: 2rem;
-}
-
-.Thumbnails {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  max-height: 25vw;
-  overflow-y: auto;
-  padding: 0.5rem;
-  direction: rtl;
-}
-
-.Thumbnails::-webkit-scrollbar {
-  width: 0.4rem;
-}
-
-.Thumbnails::-webkit-scrollbar-thumb {
-  background-color: var(--second-hover-color);
-  border-radius: 4px;
-}
-
-.Thumbnails img {
-  height: 5rem;
-  aspect-ratio: 1/1;
-  cursor: pointer;
-  object-fit: cover;
-  border-radius: 1rem;
-  transition: transform 0.2s ease-in-out;
-  direction: ltr;
-}
-
-.Thumbnails img:hover {
-  transform: scale(1.05);
-}
-
-.SelectedThumbnail {
-  outline: 2px solid var(--second-hover-color);
-}
-
-.MainImageContainer {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.MainImage {
-  width: 25vw;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  border-radius: 1rem;
-}
-
-.PrevButton,
-.NextButton {
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.PrevButton svg,
-.NextButton svg {
-  color: var(--text-color);
-  height: 3rem;
-  width: auto;
-}
-
-.PrevButton:hover,
-.NextButton:hover {
-  color: gray;
 }
 
 .BuyButton {

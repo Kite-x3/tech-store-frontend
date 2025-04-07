@@ -7,6 +7,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ProductContext } from '../../context/ProductContext'
 import APIService from '../../services/APIService'
+import { ImgViewer } from '../imgViewer/ImgViewer'
 
 export const ProductOverview = () => {
   const { id } = useParams<{ id: string }>()
@@ -89,34 +90,7 @@ export const ProductOverview = () => {
         <section className={classes.ProductOverview}>
           <h2>{product?.productName}</h2>
           <div className={classes.ImagesAndDescription}>
-            <div className={classes.ImagesContainer}>
-              <div className={classes.Thumbnails}>
-                {product?.img.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image}
-                    alt='thumbnail'
-                    className={
-                      image === selectedImage ? classes.SelectedThumbnail : ''
-                    }
-                    onClick={() => setSelectedImage(image)}
-                  />
-                ))}
-              </div>
-              <div className={classes.MainImageContainer}>
-                <button className={classes.PrevButton} onClick={handlePrev}>
-                  <NavigateBeforeIcon />
-                </button>
-                <img
-                  src={selectedImage}
-                  alt='product image'
-                  className={classes.MainImage}
-                />
-                <button className={classes.NextButton} onClick={handleNext}>
-                  <NavigateNextIcon />
-                </button>
-              </div>
-            </div>
+            <ImgViewer product={product} />
             <div className={classes.Description}>
               <p>
                 {`${product?.description.slice(0, 100)}...`}
