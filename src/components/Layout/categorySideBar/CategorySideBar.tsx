@@ -1,5 +1,5 @@
 import classes from './CategorySideBar.module.css'
-import { Categories } from '../../helpers/Categories/Categories'
+import { Categories } from '../../../helpers/Categories/Categories'
 import { NavLink } from 'react-router-dom'
 
 export const CategorySideBar = ({ isOpen }: { isOpen: boolean }) => {

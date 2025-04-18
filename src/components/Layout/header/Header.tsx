@@ -1,12 +1,18 @@
 import { useState } from 'react'
 import { Logo } from '../logo/Logo'
 import classes from './Header.module.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { CategorySideBar } from '../categorySideBar/CategorySideBar'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import { useAuth } from '../../../context/AuthContext'
+import { Avatar, Button, IconButton, Typography } from '@mui/material'
 
 export const Header = () => {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false)
+
+  const { user, logout } = useAuth()
+
+  const navigate = useNavigate()
 
   return (
     <header className={classes.Header}>
@@ -38,7 +44,35 @@ export const Header = () => {
           Скидки
         </NavLink>
       </div>
-      <Logo className={classes.Avatar} />
+      <div className={classes.RightSide}>
+        {user ? (
+          <>
+            <Typography sx={{ lineHeight: 1 }}>
+              {user.userName.charAt(0).toUpperCase() + user.userName.slice(1)}
+            </Typography>
+            <IconButton
+              onClick={() => {
+                logout()
+                navigate('/')
+              }}
+              color='inherit'
+              sx={{ p: 0 }}
+            >
+              <Avatar sx={{ width: 32, height: 32 }}>
+                {user.userName.charAt(0).toUpperCase()}
+              </Avatar>
+            </IconButton>
+          </>
+        ) : (
+          <Button
+            color='inherit'
+            onClick={() => navigate('/login')}
+            sx={{ whiteSpace: 'nowrap' }} // Запрещаем перенос текста
+          >
+            Войти
+          </Button>
+        )}
+      </div>
 
       <CategorySideBar isOpen={isSideBarOpen} />
     </header>

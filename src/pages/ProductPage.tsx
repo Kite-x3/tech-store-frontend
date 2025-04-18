@@ -1,13 +1,5 @@
-//import { useParams } from 'react-router-dom'
-import { OneProduct } from '../helpers/OneProduct/OneProduct'
-import { ProductDetails } from '../components/productDetails/ProductDetails'
+import { ProductOverview } from '../components/productOverview/ProductOverview'
 
 export const ProductPage = () => {
-  //const { id } = useParams()
-
-  if (!OneProduct) {
-    return <h2>Товар не найден</h2>
-  }
-
-  return <ProductDetails {...OneProduct} />
+  return <ProductOverview />
 }
