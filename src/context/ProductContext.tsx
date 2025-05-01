@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useEffect, useState } from 'react'
 import { Product } from '../interfaces/product'
-import APIService from '../services/APIService'
+import APIService from '../services/ProductService'
 
 interface ProductContextProps {
   products: Product[]

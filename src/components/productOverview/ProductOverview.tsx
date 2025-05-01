@@ -5,7 +5,7 @@ import classes from './ProductOverview.module.css'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ProductContext } from '../../context/ProductContext'
-import APIService from '../../services/APIService'
+import APIService from '../../services/ProductService'
 import { ImgViewer } from '../imgViewer/ImgViewer'
 
 export const ProductOverview = () => {
@@ -58,7 +58,7 @@ export const ProductOverview = () => {
   }
 
   return (
-    <div>
+    <div className={classes.EditAndProductContainer}>
       <button onClick={() => setEditMode(true)}>Edit</button>
       <button onClick={() => navigate('/')}>Back</button>
       {!editMode ? (

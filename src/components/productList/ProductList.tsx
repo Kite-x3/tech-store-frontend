@@ -27,9 +27,9 @@ export const ProductList = ({ className = 'grid' }: { className?: string }) => {
       <section className={`${classes.ProductList} ${classes[className]}`}>
         {products.map((p, i) => {
           return (
-            <div>
+            <div key={i}>
               <button onClick={() => handleDelete(p.id)}>Delete</button>
-              <ProductCard {...p} key={i}></ProductCard>
+              <ProductCard {...p}></ProductCard>
             </div>
           )
         })}

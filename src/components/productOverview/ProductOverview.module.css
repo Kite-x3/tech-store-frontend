@@ -1,13 +1,16 @@
+.EditAndProductContainer {
+  width: 100%;
+}
+
 .ProductOverview {
   border-radius: 1rem;
   background-color: var(--elements-bg-color);
-  width: auto;
   padding: 2rem;
-  width: 100%;
   box-sizing: border-box;
 }
 
 .ImagesAndDescription {
+  width: 100%;
   display: flex;
   flex-direction: row;
 }

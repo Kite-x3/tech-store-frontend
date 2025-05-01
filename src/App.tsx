@@ -13,6 +13,7 @@ import { ProductPage } from './pages/ProductPage'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import { ReactElement } from 'react'
 import { LoginPage } from './pages/LoginPage'
+import { ReviewProvider } from './context/ReviewContext'
 
 const ProtectedRoute = ({
   children,
@@ -40,25 +41,27 @@ function App() {
     <div className='App'>
       <AuthProvider>
         <ProductProvider>
-          <Router basename='/'>
-            <Header />
-            <div className='Content'>
-              <Routes>
-                <Route path='/' element={<MainPage />} />
-                <Route path='/product/:id' element={<ProductPage />} />
-                <Route path='/login' element={<LoginPage />} />
-                <Route
-                  path='/product/add'
-                  element={
-                    <ProtectedRoute adminOnly>
-                      <ProductForm />
-                    </ProtectedRoute>
-                  }
-                />
-              </Routes>
-            </div>
-            <Footer />
-          </Router>
+          <ReviewProvider>
+            <Router basename='/'>
+              <Header />
+              <div className='Content'>
+                <Routes>
+                  <Route path='/' element={<MainPage />} />
+                  <Route path='/product/:id' element={<ProductPage />} />
+                  <Route path='/login' element={<LoginPage />} />
+                  <Route
+                    path='/product/add'
+                    element={
+                      <ProtectedRoute adminOnly>
+                        <ProductForm />
+                      </ProtectedRoute>
+                    }
+                  />
+                </Routes>
+              </div>
+              <Footer />
+            </Router>
+          </ReviewProvider>
         </ProductProvider>
       </AuthProvider>
     </div>

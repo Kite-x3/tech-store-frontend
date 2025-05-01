@@ -1,5 +1,5 @@
-import { ProductOverview } from '../components/productOverview/ProductOverview'
+import { ProductDetails } from '../components/productDetails/ProductDetails'
 
 export const ProductPage = () => {
-  return <ProductOverview />
+  return <ProductDetails />
 }
