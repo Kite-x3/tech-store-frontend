@@ -1,10 +1,14 @@
 import { ReactNode, createContext, useEffect, useState } from 'react'
-import { Product } from '../interfaces/product'
+import {
+  Product,
+  ProductCreateDto,
+  ProductUpdateDto,
+} from '../interfaces/product'
 import APIService from '../services/ProductService'
 
 interface ProductContextProps {
   products: Product[]
-  addProduct: (product: Omit<Product, 'id'>) => void
+  addProduct: (product: ProductCreateDto) => Promise<Product>
   deleteProduct: (id: number) => void
   updateProduct: (
     id: number,
@@ -28,9 +32,10 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     setProducts(data || [])
   }
 
-  const addProduct = async (product: Omit<Product, 'id'>) => {
+  const addProduct = async (product: ProductCreateDto): Promise<Product> => {
     const newProduct = await APIService.createProduct(product)
     setProducts([...products, newProduct])
+    return newProduct
   }
 
   const deleteProduct = async (id: number) => {
@@ -41,7 +46,7 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
 
   const updateProduct = async (
     id: number,
-    updatedProduct: Omit<Product, 'id'>
+    updatedProduct: Omit<ProductUpdateDto, 'id'>
   ): Promise<Product> => {
     const response: Product = await APIService.updateProduct(id, updatedProduct)
 

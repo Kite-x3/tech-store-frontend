@@ -1,25 +1,19 @@
-import { useContext, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ProductContext } from '../../context/ProductContext'
-
-interface newProduct {
-  price: number
-  productName: string
-  description: string
-  img: string[]
-  categoryId: number
-}
+import { ProductCreateDto } from '../../interfaces/product'
 
 export const ProductForm = () => {
   const navigate = useNavigate()
   const context = useContext(ProductContext)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const [newProduct, setNewProduct] = useState<newProduct>({
+  const [newProduct, setNewProduct] = useState<ProductCreateDto>({
     price: 0,
     productName: '',
     description: '',
-    img: [],
     categoryId: 0,
+    images: [] as File[],
   })
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -29,7 +23,8 @@ export const ProductForm = () => {
       !newProduct.productName.trim() ||
       !newProduct.description.trim() ||
       !newProduct.price ||
-      !newProduct.categoryId
+      !newProduct.categoryId ||
+      !newProduct.images
     ) {
       alert('please fill all required fields')
       return
@@ -41,8 +36,8 @@ export const ProductForm = () => {
         price: 0,
         productName: '',
         description: '',
-        img: [],
         categoryId: 0,
+        images: [] as File[],
       })
 
       navigate('/')
@@ -96,6 +91,28 @@ export const ProductForm = () => {
             })
           }
         />
+      </div>
+      <h3>Current Images</h3>
+      <div>
+        <h3>Images</h3>
+        <input
+          type='file'
+          multiple
+          ref={fileInputRef}
+          onChange={(e) => {
+            if (e.target.files) {
+              setNewProduct({
+                ...newProduct,
+                images: Array.from(e.target.files),
+              })
+            }
+          }}
+        />
+        <div>
+          {newProduct.images?.map((file, index) => (
+            <div key={index}>{file.name}</div>
+          ))}
+        </div>
       </div>
       <button type='submit'>Add Product</button>
       <button onClick={() => navigate('/')}>Back</button>

@@ -21,10 +21,11 @@
 }
 
 .Thumbnails img {
+  background-color: white;
   height: 5rem;
   aspect-ratio: 1/1;
   cursor: pointer;
-  object-fit: cover;
+  object-fit: scale-down;
   border-radius: 1rem;
   transition: transform 0.2s ease-in-out;
   direction: ltr;
@@ -45,9 +46,10 @@
 }
 
 .MainImage {
+  background-color: white;
   width: 25vw;
   aspect-ratio: 1/1;
-  object-fit: cover;
+  object-fit: scale-down;
   border-radius: 1rem;
 }
 

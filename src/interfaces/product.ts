@@ -1,14 +1,21 @@
 import { ProductSpecification } from './productSpecification'
-import { Review } from './review'
 
 export interface Product {
   id: number
   price: number
   productName: string
   description: string
-  img: string[]
+  imageUrls: string[]
   //  fullDescription?: string
   //  specifications?: ProductSpecification[]
-  //  reviews?: Review[]
   categoryId: number
+}
+
+export interface ProductCreateDto extends Omit<Product, 'id' | 'imageUrls'> {
+  images?: File[] // Для загрузки файлов
+}
+
+export interface ProductUpdateDto extends Product {
+  newImages?: File[]
+  imagesToDelete?: string[]
 }

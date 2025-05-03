@@ -14,3 +14,24 @@
   gap: 1rem;
   flex-direction: column;
 }
+.DeleteButton {
+  background-color: rgb(250, 72, 72);
+  border-radius: 1rem;
+  padding: 0.2rem 0.5rem;
+  border: none;
+  cursor: pointer;
+  margin: 0 0 0.5rem 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.AddProductButton {
+  background-color: rgb(109, 248, 167);
+  border-radius: 1rem;
+  padding: 0.2rem 0.5rem;
+  border: none;
+  cursor: pointer;
+  margin: 0 0 0.5rem 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}

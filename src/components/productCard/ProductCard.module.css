@@ -43,10 +43,11 @@
 }
 
 .Product img {
-  max-width: 6vw;
+  background-color: white;
+  max-width: 5vw;
   min-width: 1vw;
   aspect-ratio: 1/1;
-  object-fit: cover;
+  object-fit: scale-down;
   border-radius: 1rem;
 }
 

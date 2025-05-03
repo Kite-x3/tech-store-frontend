@@ -23,12 +23,22 @@ export const ProductList = ({ className = 'grid' }: { className?: string }) => {
 
   return (
     <>
-      <button onClick={() => navigate('product/add')}>Add new product</button>
+      <button
+        className={classes.AddProductButton}
+        onClick={() => navigate('product/add')}
+      >
+        Add new product
+      </button>
       <section className={`${classes.ProductList} ${classes[className]}`}>
         {products.map((p, i) => {
           return (
             <div key={i}>
-              <button onClick={() => handleDelete(p.id)}>Delete</button>
+              <button
+                className={classes.DeleteButton}
+                onClick={() => handleDelete(p.id)}
+              >
+                Delete
+              </button>
               <ProductCard {...p}></ProductCard>
             </div>
           )

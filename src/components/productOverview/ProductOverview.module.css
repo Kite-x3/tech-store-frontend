@@ -68,3 +68,14 @@ h2 {
 .ShowMoreButton:hover {
   color: var(--second-hover-color);
 }
+
+.EditButton {
+  background-color: rgb(250, 170, 72);
+  border-radius: 1rem;
+  padding: 0.2rem 0.5rem;
+  border: none;
+  cursor: pointer;
+  margin: 0 0 0.5rem 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}

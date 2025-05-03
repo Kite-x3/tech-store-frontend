@@ -3,7 +3,7 @@ import { Product } from '../../interfaces/product'
 import classes from './ProductOverview.module.css'
 
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { ProductContext } from '../../context/ProductContext'
 import APIService from '../../services/ProductService'
 import { ImgViewer } from '../imgViewer/ImgViewer'
@@ -11,7 +11,6 @@ import { ImgViewer } from '../imgViewer/ImgViewer'
 export const ProductOverview = () => {
   const { id } = useParams<{ id: string }>()
   const context = useContext(ProductContext)
-  const navigate = useNavigate()
 
   const [product, setProduct] = useState<Product | null>(null)
   const [editMode, setEditMode] = useState<boolean>(false)
@@ -59,8 +58,9 @@ export const ProductOverview = () => {
 
   return (
     <div className={classes.EditAndProductContainer}>
-      <button onClick={() => setEditMode(true)}>Edit</button>
-      <button onClick={() => navigate('/')}>Back</button>
+      <button className={classes.EditButton} onClick={() => setEditMode(true)}>
+        Edit
+      </button>
       {!editMode ? (
         <section className={classes.ProductOverview}>
           <h2>{product?.productName}</h2>

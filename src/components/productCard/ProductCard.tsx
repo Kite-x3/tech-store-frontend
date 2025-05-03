@@ -5,7 +5,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 
 export const ProductCard = ({
   id,
-  img,
+  imageUrls,
   productName,
   price,
   description,
@@ -14,7 +14,7 @@ export const ProductCard = ({
     <div className={classes.Product}>
       <NavLink to={`/product/${id}`} className={classes.ProductLink}>
         <div className={classes.Info}>
-          <img src={img?.[0]} />
+          <img src={imageUrls?.[0]} loading='lazy' />
           <div className={classes.description}>
             <h2>{productName}</h2>
             <p>{description}</p>
@@ -23,7 +23,7 @@ export const ProductCard = ({
       </NavLink>
 
       <div className={classes.Buying}>
-        <strong>{price}$</strong>
+        <strong>{price}₽</strong>
         <button>
           <AddShoppingCartIcon></AddShoppingCartIcon> Купить
         </button>
