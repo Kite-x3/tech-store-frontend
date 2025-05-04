@@ -62,7 +62,7 @@ const LoginModal = ({ open, onClose }: LoginModalProps) => {
           variant='h5'
           component='h2'
           mb={3}
-          color='text.primary' // Явно задаем цвет текста
+          color='text.primary'
           fontWeight='bold'
         >
           Вход в систему

@@ -1,0 +1,37 @@
+.Container {
+  width: 70vw;
+}
+
+.Filters {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.ProductList {
+  display: flex;
+  gap: 1rem;
+}
+
+.PriceValues {
+  display: flex;
+  justify-content: space-between;
+  color: #ffffff;
+}
+
+.PriceFilter {
+  width: 20vw;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.list {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}

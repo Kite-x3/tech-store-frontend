@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { ProductCard } from '../productCard/ProductCard'
 import classes from './ProductList.module.css'
 import { ProductContext } from '../../context/ProductContext'
@@ -10,7 +10,7 @@ export const ProductList = ({ className = 'grid' }: { className?: string }) => {
 
   if (!context) return <div>No context available</div>
 
-  const { products, deleteProduct } = context
+  const { products, deleteProduct, fetchMainPageProducts } = context
 
   const handleDelete = (id: number) => {
     const isConfirmed: boolean = window.confirm(
@@ -20,6 +20,10 @@ export const ProductList = ({ className = 'grid' }: { className?: string }) => {
       deleteProduct(id)
     }
   }
+
+  useEffect(() => {
+    fetchMainPageProducts()
+  }, [])
 
   return (
     <>

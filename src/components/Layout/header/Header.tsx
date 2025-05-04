@@ -14,6 +14,10 @@ export const Header = () => {
 
   const navigate = useNavigate()
 
+  const closeSidebar = () => {
+    setIsSideBarOpen(false)
+  }
+
   return (
     <header className={classes.Header}>
       <div className={classes.LeftSide}>
@@ -67,14 +71,14 @@ export const Header = () => {
           <Button
             color='inherit'
             onClick={() => navigate('/login')}
-            sx={{ whiteSpace: 'nowrap' }} // Запрещаем перенос текста
+            sx={{ whiteSpace: 'nowrap' }}
           >
             Войти
           </Button>
         )}
       </div>
 
-      <CategorySideBar isOpen={isSideBarOpen} />
+      <CategorySideBar isOpen={isSideBarOpen} onClose={closeSidebar} />
     </header>
   )
 }

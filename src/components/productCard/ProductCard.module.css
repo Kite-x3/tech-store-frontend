@@ -44,8 +44,7 @@
 
 .Product img {
   background-color: white;
-  max-width: 5vw;
-  min-width: 1vw;
+  width: 5vw;
   aspect-ratio: 1/1;
   object-fit: scale-down;
   border-radius: 1rem;

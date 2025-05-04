@@ -5,7 +5,7 @@ import classes from './ProductOverview.module.css'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 import { useParams } from 'react-router-dom'
 import { ProductContext } from '../../context/ProductContext'
-import APIService from '../../services/ProductService'
+import ProductService from '../../services/ProductService'
 import { ImgViewer } from '../imgViewer/ImgViewer'
 
 export const ProductOverview = () => {
@@ -19,7 +19,7 @@ export const ProductOverview = () => {
   const fetchProduct = async () => {
     if (id) {
       try {
-        const fetchedProduct: Product = await APIService.getProductById(
+        const fetchedProduct: Product = await ProductService.getProductById(
           parseInt(id, 10)
         )
         setProduct(fetchedProduct)
