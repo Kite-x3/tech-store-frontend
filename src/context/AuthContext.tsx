@@ -15,6 +15,8 @@ interface AuthContextType {
 
   logout: () => void
 
+  register: (userName: string, password: string, email: string) => Promise<void>
+
   isAdmin: boolean
 }
 
@@ -48,6 +50,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }
 
+  const register = async (
+    userName: string,
+    password: string,
+    email: string
+  ) => {
+    try {
+      const response = await authService.register({ userName, password, email })
+      authService.storeToken(response.token)
+      localStorage.setItem('user', JSON.stringify(response))
+      setUser(response)
+    } catch (error) {
+      console.error('Ошибка регистрации:', error)
+      throw error
+    }
+  }
+
   const logout = () => {
     authService.removeToken()
     localStorage.removeItem('user')
@@ -57,7 +75,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const isAdmin = user?.userRole === UserRole.Admin
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, isAdmin }}>
+    <AuthContext.Provider value={{ user, login, logout, isAdmin, register }}>
       {children}
     </AuthContext.Provider>
   )

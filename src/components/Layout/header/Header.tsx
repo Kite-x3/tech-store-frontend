@@ -52,7 +52,8 @@ export const Header = () => {
         {user ? (
           <>
             <Typography sx={{ lineHeight: 1 }}>
-              {user.userName.charAt(0).toUpperCase() + user.userName.slice(1)}
+              {user?.userName?.charAt(0).toUpperCase() +
+                user.userName?.slice(1)}
             </Typography>
             <IconButton
               onClick={() => {
@@ -63,7 +64,7 @@ export const Header = () => {
               sx={{ p: 0 }}
             >
               <Avatar sx={{ width: 32, height: 32 }}>
-                {user.userName.charAt(0).toUpperCase()}
+                {user?.userName?.[0]?.toUpperCase()}
               </Avatar>
             </IconButton>
           </>

@@ -16,6 +16,7 @@ import { LoginPage } from './pages/LoginPage'
 import { ReviewProvider } from './context/ReviewContext'
 import { CategoryProvider } from './context/CategoryContext'
 import { CategoryPage } from './pages/CategoryPage'
+import { RegistrationPage } from './pages/RegistrationPage'
 
 const ProtectedRoute = ({
   children,
@@ -61,6 +62,7 @@ function App() {
                       }
                     />
                     <Route path='/category/:Id' element={<CategoryPage />} />
+                    <Route path='/register' element={<RegistrationPage />} />
                   </Routes>
                 </div>
                 <Footer />
