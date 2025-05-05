@@ -15,7 +15,7 @@ interface ProductContextProps {
   deleteProduct: (id: number) => void
   updateProduct: (
     id: number,
-    updatedProduct: Omit<Product, 'id'>
+    updatedProduct: ProductUpdateDto
   ) => Promise<Product>
   fetchMainPageProducts: () => Promise<Product[]>
   getProductsByFilter: (
@@ -65,7 +65,7 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
 
   const updateProduct = async (
     id: number,
-    updatedProduct: Omit<ProductUpdateDto, 'id'>
+    updatedProduct: ProductUpdateDto
   ): Promise<Product> => {
     const response: Product = await ProductService.updateProduct(
       id,

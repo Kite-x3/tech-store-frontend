@@ -79,31 +79,27 @@ class ProductService {
     return response.json()
   }
 
-  async updateProduct(
-    id: number,
-    product: Omit<ProductUpdateDto, 'id'>
-  ): Promise<Product> {
+  async updateProduct(id: number, product: ProductUpdateDto): Promise<Product> {
     const formData = new FormData()
 
-    formData.append(
-      'productDto',
-      JSON.stringify({
-        id: id,
-        productName: product.productName,
-        description: product.description,
-        price: product.price,
-        categoryId: product.categoryId,
-        imageUrls: product.imageUrls,
-      })
-    )
+    // Добавляем основные поля продукта
+    formData.append('ProductName', product.productName)
+    formData.append('Description', product.description)
+    formData.append('Price', product.price.toString())
+    formData.append('CategoryId', product.categoryId.toString())
+    formData.append('Id', id.toString())
+
+    if (product.imageUrls) {
+      formData.append('ImageUrls', JSON.stringify(product.imageUrls))
+    }
 
     if (product.newImages) {
-      product.newImages.forEach((file) => {
-        formData.append('newImages', file)
+      product.newImages.forEach((file, index) => {
+        formData.append(`image${index}`, file)
       })
     }
 
-    if (product.imagesToDelete) {
+    if (product.imagesToDelete && product.imagesToDelete.length > 0) {
       formData.append('imagesToDelete', JSON.stringify(product.imagesToDelete))
     }
 
@@ -113,8 +109,9 @@ class ProductService {
     })
 
     if (!response.ok) {
-      const error = await response.json()
-      throw new Error(error.message || 'Failed to update product')
+      const error = await response.text()
+      console.error('Server response:', error)
+      throw new Error(error || 'Failed to update product')
     }
 
     return await response.json()
