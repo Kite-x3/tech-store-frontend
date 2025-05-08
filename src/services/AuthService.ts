@@ -29,6 +29,29 @@ class AuthService {
     return (await response.json()) as LoginResponse
   }
 
+  async validateToken(): Promise<boolean> {
+    const token = this.getToken()
+    if (!token) return false
+
+    try {
+      const response = await fetch('/api/Account/validate', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        return !!data.userName
+      }
+
+      return false
+    } catch (error) {
+      console.error('Token validation failed:', error)
+      return false
+    }
+  }
+
   async register(data: RegisterRequest): Promise<LoginResponse> {
     const response = await fetch(`${this.baseUrl}/api/Account/register`, {
       method: 'POST',

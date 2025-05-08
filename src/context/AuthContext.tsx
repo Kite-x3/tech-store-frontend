@@ -30,12 +30,31 @@ const AuthContext = createContext<AuthContextType | null>(null)
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<LoginResponse | null>(null)
 
-  useEffect(() => {
+  const initializeAuth = async () => {
     const token = authService.getToken()
-    if (token) {
-      const storedUser = localStorage.getItem('user')
-      if (storedUser) setUser(JSON.parse(storedUser))
+    if (!token) {
+      return
     }
+
+    try {
+      const response = await authService.validateToken()
+      if (response) {
+        const storedUser = localStorage.getItem('user')
+        if (storedUser) {
+          setUser(JSON.parse(storedUser))
+        }
+      } else {
+        console.log('failed valifation')
+        logout()
+      }
+    } catch (error) {
+      console.error('Auth validation failed:', error)
+      logout()
+    }
+  }
+
+  useEffect(() => {
+    initializeAuth()
   }, [])
 
   const login = async (userName: string, password: string) => {

@@ -5,6 +5,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 import { useContext } from 'react'
 import { ProductContext } from '../../context/ProductContext'
 import { useAuth } from '../../context/AuthContext'
+import { CartContext } from '../../context/CartContext'
 
 export const ProductCard = ({
   id,
@@ -15,8 +16,11 @@ export const ProductCard = ({
 }: Product) => {
   const { isAdmin } = useAuth()
   const context = useContext(ProductContext)
+  const cartContext = useContext(CartContext)
 
-  if (!context) return <div>No context available</div>
+  if (!context || !cartContext) return <div>No context available</div>
+
+  const { addItem } = cartContext
 
   const { deleteProduct } = context
 
@@ -27,6 +31,10 @@ export const ProductCard = ({
     if (isConfirmed) {
       deleteProduct(id)
     }
+  }
+
+  const handleAddToCart = () => {
+    addItem(id, 1)
   }
 
   return (
@@ -52,7 +60,7 @@ export const ProductCard = ({
 
         <div className={classes.Buying}>
           <strong>{price}₽</strong>
-          <button>
+          <button onClick={handleAddToCart}>
             <AddShoppingCartIcon></AddShoppingCartIcon> Купить
           </button>
         </div>

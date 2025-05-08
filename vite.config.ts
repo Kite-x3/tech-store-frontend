@@ -10,6 +10,9 @@ export default defineConfig({
         target: 'https://localhost:7048', // URL бэкенда ASP.NET
         changeOrigin: true,
         secure: false,
+        headers: {
+          Connection: 'keep-alive',
+        },
       },
       '/images': {
         target: 'https://localhost:7048',

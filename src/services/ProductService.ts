@@ -82,7 +82,6 @@ class ProductService {
   async updateProduct(id: number, product: ProductUpdateDto): Promise<Product> {
     const formData = new FormData()
 
-    // Добавляем основные поля продукта
     formData.append('ProductName', product.productName)
     formData.append('Description', product.description)
     formData.append('Price', product.price.toString())

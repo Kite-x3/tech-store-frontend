@@ -17,6 +17,7 @@ import { ReviewProvider } from './context/ReviewContext'
 import { CategoryProvider } from './context/CategoryContext'
 import { CategoryPage } from './pages/CategoryPage'
 import { RegistrationPage } from './pages/RegistrationPage'
+import { CartProvider } from './context/CartContext'
 
 const ProtectedRoute = ({
   children,
@@ -45,29 +46,31 @@ function App() {
       <AuthProvider>
         <CategoryProvider>
           <ProductProvider>
-            <ReviewProvider>
-              <Router basename='/'>
-                <Header />
-                <div className='Content'>
-                  <Routes>
-                    <Route path='/' element={<MainPage />} />
-                    <Route path='/product/:id' element={<ProductPage />} />
-                    <Route path='/login' element={<LoginPage />} />
-                    <Route
-                      path='/product/add'
-                      element={
-                        <ProtectedRoute adminOnly>
-                          <ProductForm />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route path='/category/:Id' element={<CategoryPage />} />
-                    <Route path='/register' element={<RegistrationPage />} />
-                  </Routes>
-                </div>
-                <Footer />
-              </Router>
-            </ReviewProvider>
+            <CartProvider>
+              <ReviewProvider>
+                <Router basename='/'>
+                  <Header />
+                  <div className='Content'>
+                    <Routes>
+                      <Route path='/' element={<MainPage />} />
+                      <Route path='/product/:id' element={<ProductPage />} />
+                      <Route path='/login' element={<LoginPage />} />
+                      <Route
+                        path='/product/add'
+                        element={
+                          <ProtectedRoute adminOnly>
+                            <ProductForm />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route path='/category/:Id' element={<CategoryPage />} />
+                      <Route path='/register' element={<RegistrationPage />} />
+                    </Routes>
+                  </div>
+                  <Footer />
+                </Router>
+              </ReviewProvider>
+            </CartProvider>
           </ProductProvider>
         </CategoryProvider>
       </AuthProvider>

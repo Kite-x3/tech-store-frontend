@@ -6,12 +6,13 @@ import { CategorySideBar } from '../categorySideBar/CategorySideBar'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { useAuth } from '../../../context/AuthContext'
 import { Avatar, Button, IconButton, Typography } from '@mui/material'
+import { ShoppingCartModal } from '../shopingCartModal/ShoppingCartModal'
 
 export const Header = () => {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false)
 
   const { user, logout } = useAuth()
-
+  const [isCartOpen, setIsCartOpen] = useState(false)
   const navigate = useNavigate()
 
   const closeSidebar = () => {
@@ -49,6 +50,10 @@ export const Header = () => {
         </NavLink>
       </div>
       <div className={classes.RightSide}>
+        <ShoppingCartModal
+          isCartOpen={isCartOpen}
+          setIsCartOpen={setIsCartOpen}
+        />
         {user ? (
           <>
             <Typography sx={{ lineHeight: 1 }}>
