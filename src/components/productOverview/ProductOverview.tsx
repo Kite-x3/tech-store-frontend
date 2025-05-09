@@ -6,8 +6,10 @@ import { useParams } from 'react-router-dom'
 import { ProductContext } from '../../context/ProductContext'
 import ProductService from '../../services/ProductService'
 import { ImgViewer } from '../imgViewer/ImgViewer'
+import { useAuth } from '../../context/AuthContext'
 
 export const ProductOverview = () => {
+  const { isAdmin } = useAuth()
   const { id } = useParams<{ id: string }>()
   const context = useContext(ProductContext)
   const [product, setProduct] = useState<Product | null>(null)
@@ -96,9 +98,14 @@ export const ProductOverview = () => {
 
   return (
     <div className={classes.EditAndProductContainer}>
-      <button className={classes.EditButton} onClick={() => setEditMode(true)}>
-        Edit
-      </button>
+      {isAdmin && (
+        <button
+          className={classes.EditButton}
+          onClick={() => setEditMode(true)}
+        >
+          Edit
+        </button>
+      )}
 
       {!editMode ? (
         <section className={classes.ProductOverview}>

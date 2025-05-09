@@ -1,0 +1,31 @@
+.CartItemElement {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--elements-bg-color);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+h3 {
+  margin: 0;
+}
+
+.Info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text-color);
+}
+.ProductLink {
+  text-decoration: none;
+}
+
+.ProductLink img {
+  background-color: white;
+  width: 5vw;
+  aspect-ratio: 1/1;
+  object-fit: scale-down;
+  border-radius: 1rem;
+}

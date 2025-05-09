@@ -18,6 +18,7 @@ import { CategoryProvider } from './context/CategoryContext'
 import { CategoryPage } from './pages/CategoryPage'
 import { RegistrationPage } from './pages/RegistrationPage'
 import { CartProvider } from './context/CartContext'
+import { CartPage } from './pages/CartPage'
 
 const ProtectedRoute = ({
   children,
@@ -65,6 +66,7 @@ function App() {
                       />
                       <Route path='/category/:Id' element={<CategoryPage />} />
                       <Route path='/register' element={<RegistrationPage />} />
+                      <Route path='/cart' element={<CartPage />} />
                     </Routes>
                   </div>
                   <Footer />

@@ -136,8 +136,8 @@ export const FilteredProductList = ({
       <div>
         <div className={`${classes.ProductList} ${classes[className]}`}>
           {paginatedProducts?.items.map((product) => (
-            <div>
-              <ProductCard key={product.id} {...product} />
+            <div key={product.id}>
+              <ProductCard {...product} />
             </div>
           ))}
         </div>
