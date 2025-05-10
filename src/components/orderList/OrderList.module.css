@@ -1,0 +1,8 @@
+.OrderList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+  width: 30vw;
+  margin: 1rem;
+}

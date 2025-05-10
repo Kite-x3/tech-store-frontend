@@ -7,8 +7,10 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { useAuth } from '../../../context/AuthContext'
 import { Avatar, Button, IconButton, Typography } from '@mui/material'
 import { ShoppingCartModal } from '../shopingCartModal/ShoppingCartModal'
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
 
 export const Header = () => {
+  const { isAdmin } = useAuth()
   const [isSideBarOpen, setIsSideBarOpen] = useState(false)
 
   const { user, logout } = useAuth()
@@ -50,6 +52,16 @@ export const Header = () => {
         </NavLink>
       </div>
       <div className={classes.RightSide}>
+        {isAdmin && (
+          <Button
+            color='inherit'
+            onClick={() => navigate('/admin/orders')}
+            startIcon={<AdminPanelSettingsIcon />}
+            sx={{ mr: 1 }}
+          >
+            Заказы
+          </Button>
+        )}
         <ShoppingCartModal
           isCartOpen={isCartOpen}
           setIsCartOpen={setIsCartOpen}

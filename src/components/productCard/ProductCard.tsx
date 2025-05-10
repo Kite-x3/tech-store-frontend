@@ -38,7 +38,7 @@ export const ProductCard = ({
   }
 
   return (
-    <div>
+    <div className={classes.ProductCard}>
       {isAdmin && (
         <button
           className={classes.DeleteButton}

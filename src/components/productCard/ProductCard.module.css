@@ -1,10 +1,18 @@
+.ProductCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
 .Product {
   padding: 1rem;
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
-  gap: 1rem;
   background-color: var(--elements-bg-color);
+  justify-content: space-between;
+  flex-grow: 1;
 }
 
 .ProductLink {
@@ -44,7 +52,7 @@
 
 .Product img {
   background-color: white;
-  width: 5vw;
+  width: 6vw;
   aspect-ratio: 1/1;
   object-fit: scale-down;
   border-radius: 1rem;
@@ -68,12 +76,13 @@
 }
 
 .DeleteButton {
+  width: 30%;
   background-color: rgb(250, 72, 72);
   border-radius: 1rem;
   padding: 0.2rem 0.5rem;
   border: none;
   cursor: pointer;
-  margin: 0 0 0.5rem 0.5rem;
+  margin: 0 0 0.3rem 0.5rem;
   font-size: 1rem;
   font-weight: 500;
 }

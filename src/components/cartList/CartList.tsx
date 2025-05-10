@@ -8,7 +8,16 @@ export const CartList = () => {
 
   if (!context) return <div>No context avalible...</div>
 
-  const { cart } = context
+  const { cart, placeOrder } = context
+
+  const handlePlaceOrder = async () => {
+    try {
+      await placeOrder()
+      alert('заказ оформлен, его можно увидеть в истори заказов')
+    } catch (error) {
+      console.error('Failed to place order:', error)
+    }
+  }
 
   return (
     <div className={classes.CartPage}>
@@ -17,7 +26,13 @@ export const CartList = () => {
           return <CartItemElement {...e} key={i}></CartItemElement>
         })}
       </div>
-      <button className={classes.OrderButton}>Оформить заказ</button>
+      <button
+        className={classes.OrderButton}
+        onClick={handlePlaceOrder}
+        disabled={!cart || cart.items.length === 0}
+      >
+        Оформить заказ
+      </button>
     </div>
   )
 }

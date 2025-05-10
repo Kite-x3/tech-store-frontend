@@ -80,10 +80,11 @@ class CartService {
   }
 
   async clearCart(): Promise<void> {
+    const token = authService.getToken()
     const response = await fetch(`${this.baseURL}/Carts/clear`, {
       method: 'DELETE',
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Authorization: `Bearer ${token}`,
       },
     })
     if (!response.ok) {

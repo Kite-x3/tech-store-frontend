@@ -160,7 +160,10 @@ export const ShoppingCartModal = ({
           >
             <Button
               variant='outlined'
-              onClick={() => navigate('/orders')}
+              onClick={() => {
+                navigate('/orders')
+                setIsCartOpen(false)
+              }}
               fullWidth
             >
               История заказов

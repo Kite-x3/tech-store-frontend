@@ -1,0 +1,45 @@
+.OrderElement {
+  border-radius: 1rem;
+  padding: 1.5rem;
+  background-color: var(--text-color);
+  color: var(--second-background-color);
+}
+
+.OrderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.OrderStatus {
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.2rem;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.OrderDate {
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  border-bottom: 1px solid var(--second-background-color);
+}
+
+.OrderItems {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.OrderItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+.OrderTotal {
+  font-weight: bold;
+  text-align: right;
+  font-size: 1.1rem;
+}

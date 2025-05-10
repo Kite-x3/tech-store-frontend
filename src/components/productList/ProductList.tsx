@@ -29,13 +29,9 @@ export const ProductList = ({ className = 'grid' }: { className?: string }) => {
         </button>
       )}
       <section className={`${classes.ProductList} ${classes[className]}`}>
-        {products.map((p, i) => {
-          return (
-            <div key={i}>
-              <ProductCard {...p}></ProductCard>
-            </div>
-          )
-        })}
+        {products.map((p, i) => (
+          <ProductCard key={i} {...p} />
+        ))}
       </section>
     </>
   )

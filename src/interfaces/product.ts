@@ -1,13 +1,9 @@
-import { ProductSpecification } from './productSpecification'
-
 export interface Product {
   id: number
   price: number
   productName: string
   description: string
   imageUrls: string[]
-  //  fullDescription?: string
-  //  specifications?: ProductSpecification[]
   categoryId: number
 }
 

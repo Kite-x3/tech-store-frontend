@@ -7,7 +7,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         // Проксирование всех запросов, начинающихся с "/api"
-        target: 'https://localhost:7048', // URL бэкенда ASP.NET
+        target: 'https://localhost:7048',
         changeOrigin: true,
         secure: false,
         headers: {

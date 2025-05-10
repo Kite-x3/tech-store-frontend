@@ -2,6 +2,8 @@ import { ReactNode, createContext, useEffect, useState } from 'react'
 import { Cart } from '../interfaces/cart'
 import CartService from '../services/CartService'
 import { useAuth } from './AuthContext'
+import OrderService from '../services/OrderService'
+import { CreateOrderDto, Order } from '../interfaces/order'
 
 interface CartContextProps {
   cart: Cart | null
@@ -12,6 +14,7 @@ interface CartContextProps {
   removeItem: (cartItemId: number) => Promise<void>
   clearCart: () => Promise<void>
   refreshCart: () => Promise<void>
+  placeOrder: () => Promise<Order | null>
 }
 
 export const CartContext = createContext<CartContextProps | undefined>(
@@ -23,6 +26,28 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart] = useState<Cart | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+
+  const placeOrder = async (): Promise<Order | null> => {
+    if (!user || !cart) return null
+
+    try {
+      setLoading(true)
+      const orderDto: CreateOrderDto = {
+        items: cart.items.map((item) => ({
+          productId: item.productId,
+          quantity: item.quantity,
+        })),
+      }
+      const order = await OrderService.createOrder(orderDto)
+      await clearCart()
+      return order
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to place order')
+      return null
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const fetchCart = async () => {
     if (!user) {
@@ -107,6 +132,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         removeItem,
         clearCart,
         refreshCart: fetchCart,
+        placeOrder,
       }}
     >
       {children}
