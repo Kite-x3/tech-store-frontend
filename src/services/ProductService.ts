@@ -5,6 +5,7 @@ import {
   ProductUpdateDto,
 } from '../interfaces/product'
 import { PaginatedResponse } from '../models/pagination.model'
+import { authService } from './AuthService'
 
 class ProductService {
   private baseURL: string
@@ -54,6 +55,7 @@ class ProductService {
   }
 
   async createProduct(product: ProductCreateDto): Promise<Product> {
+    const token = authService.getToken()
     const formData = new FormData()
 
     formData.append('productName', product.productName)
@@ -67,6 +69,9 @@ class ProductService {
 
     const response = await fetch(`${this.baseURL}/products`, {
       method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       body: formData,
     })
 
@@ -79,6 +84,7 @@ class ProductService {
   }
 
   async updateProduct(id: number, product: ProductUpdateDto): Promise<Product> {
+    const token = authService.getToken()
     const formData = new FormData()
 
     formData.append('ProductName', product.productName)
@@ -103,6 +109,9 @@ class ProductService {
 
     const response = await fetch(`${this.baseURL}/Products/${id}`, {
       method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       body: formData,
     })
 
@@ -116,8 +125,12 @@ class ProductService {
   }
 
   async deleteProduct(id: number): Promise<void> {
+    const token = authService.getToken()
     const response = await fetch(`${this.baseURL}/Products/${id}`, {
       method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     })
     if (!response.ok) throw new Error('Failed to delete product')
   }

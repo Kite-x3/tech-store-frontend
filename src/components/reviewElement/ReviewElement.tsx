@@ -29,7 +29,9 @@ export const ReviewElement = ({
         <button
           className={classes.deleteButton}
           onClick={() => deleteReview(id)}
-        ></button>
+        >
+          Delete
+        </button>
       )}
       <div className={classes.Review}>
         <div className={classes.DateAndRatingBlock}>
