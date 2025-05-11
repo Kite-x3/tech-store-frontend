@@ -38,7 +38,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   if (!orderContext) throw new Error('no orderContext for cart')
 
   const { createOrder } = orderContext
-
+  /**
+   * Оформляет заказ из корзины
+   * @returns {Promise<void>}
+   * @throws {Error} Если не удалось оформить заказ
+   */
   const placeOrder = async (): Promise<void> => {
     if (!user || !cart) return
 
@@ -58,7 +62,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false)
     }
   }
-
+  /**
+   * Загружает текущую корзину пользователя
+   */
   const fetchCart = async () => {
     if (!user) {
       setCart(null)
@@ -78,7 +84,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     fetchCart()
   }, [user])
-
+  /**
+   * Добавляет товар в корзину
+   * @param {number} productId - ID товара
+   * @param {number} [quantity=1] - Количество (по умолчанию 1)
+   * @returns {Promise<void>}
+   * @throws {Error} Если не удалось добавить товар
+   */
   const addItem = async (productId: number, quantity: number = 1) => {
     if (!user) {
       setError('User not authenticated')
@@ -94,7 +106,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false)
     }
   }
-
+  /**
+   * Обновляет количество товара в корзине
+   * @param {number} cartItemId - ID элемента корзины
+   * @param {number} quantity - Новое количество
+   * @returns {Promise<void>}
+   * @throws {Error} Если не удалось обновить товар
+   */
   const updateItem = async (cartItemId: number, quantity: number) => {
     try {
       setLoading(true)
@@ -106,7 +124,12 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false)
     }
   }
-
+  /**
+   * Удаляет товар из корзины
+   * @param {number} cartItemId - ID элемента корзины
+   * @returns {Promise<void>}
+   * @throws {Error} Если не удалось удалить товар
+   */
   const removeItem = async (cartItemId: number) => {
     try {
       setLoading(true)
@@ -118,7 +141,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false)
     }
   }
-
+  /**
+   * Очищает корзину
+   * @returns {Promise<void>}
+   * @throws {Error} Если не удалось очистить корзину
+   */
   const clearCart = async () => {
     try {
       setLoading(true)

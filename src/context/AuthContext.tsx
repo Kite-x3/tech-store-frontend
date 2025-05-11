@@ -29,7 +29,9 @@ const AuthContext = createContext<AuthContextType | null>(null)
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<LoginResponse | null>(null)
-
+  /**
+   * Инициализирует аутентификацию при загрузке
+   */
   const initializeAuth = async () => {
     const token = authService.getToken()
     if (!token) {
@@ -56,7 +58,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     initializeAuth()
   }, [])
-
+  /**
+   * Выполняет вход пользователя
+   * @param {string} userName - Имя пользователя
+   * @param {string} password - Пароль
+   * @returns {Promise<void>}
+   * @throws {Error} Если вход не удался
+   */
   const login = async (userName: string, password: string) => {
     try {
       const response = await authService.login({ userName, password })
@@ -68,7 +76,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       throw error
     }
   }
-
+  /**
+   * Регистрирует нового пользователя
+   * @param {string} userName - Имя пользователя
+   * @param {string} password - Пароль
+   * @param {string} email - Email
+   * @returns {Promise<void>}
+   * @throws {Error} Если регистрация не удалась
+   */
   const register = async (
     userName: string,
     password: string,
@@ -84,7 +99,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       throw error
     }
   }
-
+  /**
+   * Выполняет выход пользователя
+   */
   const logout = () => {
     authService.removeToken()
     localStorage.removeItem('user')
@@ -99,7 +116,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     </AuthContext.Provider>
   )
 }
-
+/**
+ * Хук для использования контекста аутентификации
+ * @returns {AuthContextType} Контекст аутентификации
+ * @throws {Error} Если используется вне AuthProvider
+ */
 export const useAuth = () => {
   const context = useContext(AuthContext)
 

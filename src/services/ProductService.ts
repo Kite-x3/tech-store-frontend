@@ -13,13 +13,22 @@ class ProductService {
   constructor(baseURL: string) {
     this.baseURL = baseURL
   }
-
+  /**
+   * Получает продукты для главной страницы
+   * @returns {Promise<Product[]>} Массив продуктов
+   * @throws {Error} Если не удалось загрузить продукты
+   */
   async getMainPageProducts(): Promise<Product[]> {
     const response = await fetch(`${this.baseURL}/products/main`)
     if (!response.ok) throw new Error('Failed to fetch products')
     return await response.json()
   }
-
+  /**
+   * Получает отфильтрованные продукты
+   * @param {ProductQueryParams} query - Параметры фильтрации
+   * @returns {Promise<PaginatedResponse<Product>>} Пагинированный ответ с продуктами
+   * @throws {Error} Если не удалось загрузить продукты
+   */
   async getFilteredProducts(
     query: ProductQueryParams
   ): Promise<PaginatedResponse<Product>> {
@@ -47,13 +56,23 @@ class ProductService {
     const data2 = await response.json()
     return data2
   }
-
+  /**
+   * Получает продукт по ID
+   * @param {number} id - ID продукта
+   * @returns {Promise<Product>} Найденный продукт
+   * @throws {Error} Если не удалось найти продукт
+   */
   async getProductById(id: number): Promise<Product> {
     const response = await fetch(`${this.baseURL}/Products/${id}`)
     if (!response.ok) throw new Error('Failed to fetch products')
     return await response.json()
   }
-
+  /**
+   * Создает новый продукт
+   * @param {ProductCreateDto} product - Данные для создания продукта
+   * @returns {Promise<Product>} Созданный продукт
+   * @throws {Error} Если не удалось создать продукт
+   */
   async createProduct(product: ProductCreateDto): Promise<Product> {
     const token = authService.getToken()
     const formData = new FormData()
@@ -82,7 +101,13 @@ class ProductService {
     }
     return response.json()
   }
-
+  /**
+   * Обновляет существующий продукт
+   * @param {number} id - ID продукта
+   * @param {ProductUpdateDto} product - Новые данные продукта
+   * @returns {Promise<Product>} Обновленный продукт
+   * @throws {Error} Если не удалось обновить продукт
+   */
   async updateProduct(id: number, product: ProductUpdateDto): Promise<Product> {
     const token = authService.getToken()
     const formData = new FormData()
@@ -123,7 +148,12 @@ class ProductService {
 
     return await response.json()
   }
-
+  /**
+   * Удаляет продукт
+   * @param {number} id - ID продукта
+   * @returns {Promise<void>}
+   * @throws {Error} Если не удалось удалить продукт
+   */
   async deleteProduct(id: number): Promise<void> {
     const token = authService.getToken()
     const response = await fetch(`${this.baseURL}/Products/${id}`, {

@@ -31,19 +31,30 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
   const [products, setProducts] = useState<Product[]>([])
   const [paginatedProducts, setPaginatedProducts] =
     useState<PaginatedResponse<Product> | null>(null)
-
+  /**
+   * Загружает товары для главной страницы
+   * @returns {Promise<Product[]>} Массив товаров
+   */
   const fetchMainPageProducts = async (): Promise<Product[]> => {
     const data = await ProductService.getMainPageProducts()
     setProducts(data || [])
     return data
   }
-
+  /**
+   * Добавляет новый товар
+   * @param {ProductCreateDto} product - Данные товар
+   * @returns {Promise<Product>} Созданный товар
+   */
   const addProduct = async (product: ProductCreateDto): Promise<Product> => {
     const newProduct = await ProductService.createProduct(product)
     setProducts([...products, newProduct])
     return newProduct
   }
-
+  /**
+   * Получает отфильтрованные товары
+   * @param {ProductQueryParams} query - Параметры фильтрации
+   * @returns {Promise<PaginatedResponse<Product>>} Пагинированный ответ с товарами
+   */
   const getProductsByFilter = async (
     query: ProductQueryParams
   ): Promise<PaginatedResponse<Product>> => {
@@ -56,13 +67,21 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
       throw error
     }
   }
-
+  /**
+   * Удаляет товар
+   * @param {number} id - ID товара
+   */
   const deleteProduct = async (id: number) => {
     await ProductService.deleteProduct(id)
     const newProducts: Product[] = products.filter((p) => p.id !== id)
     setProducts(newProducts)
   }
-
+  /**
+   * Обновляет товар
+   * @param {number} id - ID товара
+   * @param {ProductUpdateDto} updatedProduct - Новые данные товара
+   * @returns {Promise<Product>} Обновленный товар
+   */
   const updateProduct = async (
     id: number,
     updatedProduct: ProductUpdateDto

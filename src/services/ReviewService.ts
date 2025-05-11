@@ -7,6 +7,12 @@ class ReviewService {
   constructor(baseURL: string) {
     this.baseURL = baseURL
   }
+  /**
+   * Получает отзывы для конкретного продукта
+   * @param {number} productId - ID продукта
+   * @returns {Promise<Review[]>} Массив отзывов
+   * @throws {Error} Если не удалось загрузить отзывы
+   */
   async getProductReviews(productId: number): Promise<Review[]> {
     const response = await fetch(`${this.baseURL}/Reviews/product/${productId}`)
     if (!response.ok) throw new Error('Failed to fetch reviews')
@@ -16,6 +22,12 @@ class ReviewService {
       date: new Date(review.date),
     }))
   }
+  /**
+   * Создает новый отзыв о продукте
+   * @param {Omit<Review, 'id'>} review - Данные отзыва (без ID)
+   * @returns {Promise<Review>} Созданный отзыв
+   * @throws {Error} Если не удалось создать отзыв
+   */
   async createReview(review: Omit<Review, 'id'>): Promise<Review> {
     const token = authService.getToken()
     const requestData = {
@@ -43,7 +55,12 @@ class ReviewService {
       date: new Date(data.date),
     }
   }
-
+  /**
+   * Удаляет отзыв
+   * @param {number} id - ID отзыва для удаления
+   * @returns {Promise<void>}
+   * @throws {Error} Если не удалось удалить отзыв
+   */
   async deleteReview(id: number): Promise<void> {
     const token = authService.getToken()
     const response = await fetch(`${this.baseURL}/Reviews/${id}`, {

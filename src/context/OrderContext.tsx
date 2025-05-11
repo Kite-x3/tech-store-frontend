@@ -27,7 +27,9 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [orderStatuses, setOrderStatuses] = useState<OrderStatus[]>([])
-
+  /**
+   * Загружает заказы текущего пользователя
+   */
   const fetchOrders = async () => {
     if (!user) {
       setOrders([])
@@ -48,7 +50,9 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
     getOrderStatuses()
     fetchOrders()
   }, [user])
-
+  /**
+   * Загружает все заказы (для администратора)
+   */
   const getAllOrders = async (): Promise<void> => {
     if (!user) {
       setAdminOrders([])
@@ -66,7 +70,11 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false)
     }
   }
-
+  /**
+   * Создает новый заказ
+   * @param {CreateOrderDto} orderDto - Данные заказа
+   * @returns {Promise<Order>} Созданный заказ
+   */
   const createOrder = async (orderDto: CreateOrderDto): Promise<Order> => {
     if (!user) {
       throw new Error('User not authenticated')
@@ -86,7 +94,9 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false)
     }
   }
-
+  /**
+   * Загружает статусы заказов
+   */
   const getOrderStatuses = async () => {
     try {
       const statuses = await OrderService.getOrderStatuses()
@@ -97,7 +107,13 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
       )
     }
   }
-
+  /**
+   * Обновляет статус заказа
+   * @param {number} orderId - ID заказа
+   * @param {number} statusId - ID нового статуса
+   * @returns {Promise<void>}
+   * @throws {Error} Если не удалось обновить статус
+   */
   const updateOrderStatus = async (orderId: number, statusId: number) => {
     try {
       setLoading(true)

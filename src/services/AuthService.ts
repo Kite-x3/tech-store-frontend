@@ -13,7 +13,12 @@ class AuthService {
   constructor(baseUrl: string) {
     this.baseUrl = baseUrl
   }
-
+  /**
+   * Выполняет вход пользователя
+   * @param {LoginRequest} credentials - Данные для входа
+   * @returns {Promise<LoginResponse>} Данные авторизованного пользователя
+   * @throws {Error} Если вход не удался
+   */
   async login(credentials: LoginRequest): Promise<LoginResponse> {
     const response = await fetch(`${this.baseUrl}/api/Account/login`, {
       method: 'POST',
@@ -28,7 +33,10 @@ class AuthService {
     }
     return (await response.json()) as LoginResponse
   }
-
+  /**
+   * Проверяет валидность токена
+   * @returns {Promise<boolean>} true, если токен валиден
+   */
   async validateToken(): Promise<boolean> {
     const token = this.getToken()
     if (!token) return false
@@ -51,7 +59,12 @@ class AuthService {
       return false
     }
   }
-
+  /**
+   * Регистрирует нового пользователя
+   * @param {RegisterRequest} data - Данные для регистрации
+   * @returns {Promise<LoginResponse>} Данные зарегистрированного пользователя
+   * @throws {Error} Если регистрация не удалась
+   */
   async register(data: RegisterRequest): Promise<LoginResponse> {
     const response = await fetch(`${this.baseUrl}/api/Account/register`, {
       method: 'POST',
@@ -102,19 +115,30 @@ class AuthService {
 
     return (await response.json()) as LoginResponse
   }
-
+  /**
+   * Сохраняет токен в localStorage
+   * @param {string} token - JWT токен
+   */
   storeToken(token: string): void {
     localStorage.setItem(this.tokenKey, token)
   }
-
+  /**
+   * Получает токен из localStorage
+   * @returns {string | null} Токен или null, если не найден
+   */
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey)
   }
-
+  /**
+   * Удаляет токен из localStorage
+   */
   removeToken(): void {
     localStorage.removeItem(this.tokenKey)
   }
-
+  /**
+   * Проверяет, аутентифицирован ли пользователь
+   * @returns {boolean} true, если токен существует
+   */
   isAuthenticated(): boolean {
     return !!this.getToken()
   }
