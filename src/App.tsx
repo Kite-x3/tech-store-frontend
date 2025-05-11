@@ -21,6 +21,7 @@ import { CartProvider } from './context/CartContext'
 import { CartPage } from './pages/CartPage'
 import { OrderProvider } from './context/OrderContext'
 import { OrdersPage } from './pages/OrderPage'
+import { AdminOrdersPage } from './pages/AdminOrdersPage'
 
 const ProtectedRoute = ({
   children,
@@ -49,8 +50,8 @@ function App() {
       <AuthProvider>
         <CategoryProvider>
           <ProductProvider>
-            <CartProvider>
-              <OrderProvider>
+            <OrderProvider>
+              <CartProvider>
                 <ReviewProvider>
                   <Router basename='/'>
                     <Header />
@@ -77,13 +78,21 @@ function App() {
                         />
                         <Route path='/cart' element={<CartPage />} />
                         <Route path='/orders' element={<OrdersPage />} />
+                        <Route
+                          path='/admin/orders'
+                          element={
+                            <ProtectedRoute adminOnly>
+                              <AdminOrdersPage />
+                            </ProtectedRoute>
+                          }
+                        />
                       </Routes>
                     </div>
                     <Footer />
                   </Router>
                 </ReviewProvider>
-              </OrderProvider>
-            </CartProvider>
+              </CartProvider>
+            </OrderProvider>
           </ProductProvider>
         </CategoryProvider>
       </AuthProvider>

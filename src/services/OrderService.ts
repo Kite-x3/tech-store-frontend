@@ -84,6 +84,22 @@ class OrderService {
 
     return response.json()
   }
+
+  async updateOrderStatus(orderId: number, statusId: number): Promise<void> {
+    const token = authService.getToken()
+    const response = await fetch(`${this.baseURL}/Orders/${orderId}/status`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(statusId),
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to update order status')
+    }
+  }
 }
 
 export default new OrderService('/api')
